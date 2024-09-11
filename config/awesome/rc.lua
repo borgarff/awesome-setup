@@ -54,20 +54,22 @@ modkey = "Mod4"
 -- {{{ Menu
 
 polybar = {
-   { "Kill bar",function() awful.spawn.with_shell("sh ~/.config/awesome/kpolybar.sh") end },
-   { "Spawn bar", function() awful.spawn.with_shell("sh ~/.config/awesome/spolybar.sh") end },
+  { "Kill bar",  function() awful.spawn.with_shell("bash ~/.config/awesome/kpolybar.sh") end },
+  { "Spawn bar", function() awful.spawn.with_shell("bash ~/.config/awesome/spolybar.sh") end },
 }
 
-mymainmenu = awful.menu({ items = {
-   { "Apps",function() awful.spawn.with_shell("sleep 0.5s && sh ~/.config/rofi/launchers/type-6/launcher.sh") end },
-   { "Nemo",function() awful.spawn.with_shell("nemo") end },
-   { "Scrshot",function() awful.spawn.with_shell("sleep 0.5s && flameshot full") end },
-   { "Terminal", terminal },
-   { "Polybar", polybar, beautiful.menu_submenu_icon},
-   { "Xkill", function() awful.spawn.with_shell("sleep 0.5s && xkill") end },
-   { "Restart", awesome.restart },
-   { "Quit", function() awesome.quit() end },
-                                  }})
+mymainmenu = awful.menu({
+  items = {
+    { "Apps",     function() awful.spawn.with_shell("sleep 0.5s && sh ~/.config/rofi/launchers/type-6/launcher.sh") end },
+    { "Nemo",     function() awful.spawn.with_shell("nemo") end },
+    { "Scrshot",  function() awful.spawn.with_shell("sleep 0.5s && flameshot full") end },
+    { "Terminal", terminal },
+    { "Polybar",  polybar,                                                                                              beautiful.menu_submenu_icon },
+    { "Xkill",    function() awful.spawn.with_shell("sleep 0.5s && xkill") end },
+    { "Restart",  awesome.restart },
+    { "Quit",     function() awesome.quit() end },
+  }
+})
 
 -- {{{ Tag layout
 -- Table of layouts to cover with awful.layout.inc, order matters.
@@ -111,7 +113,7 @@ end)
 
 -- {{{ Mouse bindings
 awful.mouse.append_global_mousebindings({
-  awful.button({ }, 3, function () mymainmenu:toggle() end),
+  awful.button({}, 3, function() mymainmenu:toggle() end),
   awful.button({}, 4, awful.tag.viewprev),
   awful.button({}, 5, awful.tag.viewnext),
 })
@@ -141,9 +143,7 @@ awful.keyboard.append_global_keybindings({
     { description = "open a terminal", group = "launcher" }),
 
   awful.key({}, "XF86AudioRaiseVolume", function() awful.spawn.with_shell("pactl set-sink-volume @DEFAULT_SINK@ +5%") end),
-
   awful.key({}, "XF86AudioMute", function() awful.spawn.with_shell("pactl set-sink-mute @DEFAULT_SINK@ toggle") end),
-
   awful.key({}, "F6", function() awful.util.spawn("playerctl play-pause", false) end),
 
   awful.key({}, "F8", function() awful.util.spawn("playerctl next", false) end),
@@ -151,7 +151,6 @@ awful.keyboard.append_global_keybindings({
   awful.key({}, "F7", function() awful.util.spawn("playerctl previous", false) end),
 
   awful.key({}, "XF86AudioLowerVolume", function() awful.spawn.with_shell("pactl set-sink-volume @DEFAULT_SINK@ -5%") end),
-
   awful.key({}, "XF86MonBrightnessDown", function() awful.util.spawn("brightnessctl s 10%-") end),
 
   awful.key({}, "XF86MonBrightnessUp", function() awful.util.spawn("brightnessctl s +10%") end),
@@ -218,54 +217,54 @@ awful.keyboard.append_global_keybindings({
 
   -- Prompt
   awful.key({ modkey }, "a", function()
-    awful.spawn.with_shell("sh ~/.config/rofi/launchers/type-6/launcher.sh")
-  end,
+      awful.spawn.with_shell("bash ~/.config/rofi/launchers/type-6/launcher.sh")
+    end,
     { description = "run rofi apps", group = "launcher" }),
 
   awful.key({ modkey }, "r", function()
-    awful.spawn.with_shell("sh ~/.config/rofi/launchers/type-6/launcher2.sh")
-  end,
+      awful.spawn.with_shell("bash ~/.config/rofi/launchers/type-6/launcher2.sh")
+    end,
     { description = "run rofi programs", group = "launcher" }),
 
   awful.key({ modkey }, "w", function()
-    awful.spawn.with_shell("sh ~/.config/rofi/launchers/type-6/launcher1.sh")
-  end,
+      awful.spawn.with_shell("bash ~/.config/rofi/launchers/type-6/launcher1.sh")
+    end,
     { description = "run rofi windows", group = "launcher" }),
 
   awful.key({ modkey }, "e", function()
-    awful.spawn.with_shell("nemo")
-  end,
+      awful.spawn.with_shell("nemo")
+    end,
     { description = "run nemo", group = "launcher" }),
 
-  awful.key({ modkey }, "`", function()
-    awful.spawn.with_shell("sh ~/.config/rofi/powermenu/type-6/powermenu.sh")
-  end,
+  awful.key({ modkey }, "g", function()
+      awful.spawn.with_shell("bash ~/.config/rofi/powermenu/type-6/powermenu.sh")
+    end,
     { description = "power options", group = "awesome" }),
 
   awful.key({ modkey }, "c", function()
-    cw.toggle()
-  end,
+      cw.toggle()
+    end,
     { description = "calendar popup", group = "launcher" }),
 
   awful.key({}, "F4", function()
-    awful.spawn.with_shell("flameshot gui")
-  end,
+      awful.spawn.with_shell("flameshot gui")
+    end,
     { description = "run flameshot", group = "launcher" }),
 
   awful.key({ modkey }, "p", function()
-    awful.spawn.with_shell("scrcpy -S --power-off-on-close --window-x 10")
-  end,
+      awful.spawn.with_shell("scrcpy -S --power-off-on-close --window-x 10")
+    end,
     { description = "run scrcpy", group = "launcher" }),
 
 
   awful.key({ modkey }, "z", function()
-    awful.spawn.with_shell("sh ~/.config/awesome/kpolybar.sh")
-  end,
+      awful.spawn.with_shell("bash ~/.config/awesome/kpolybar.sh")
+    end,
     { description = "kill polybar", group = "launcher" }),
 
   awful.key({ modkey }, "x", function()
-    awful.spawn.with_shell("sh ~/.config/awesome/spolybar.sh")
-  end,
+      awful.spawn.with_shell("bash ~/.config/awesome/spolybar.sh")
+    end,
     { description = "run polybar", group = "launcher" })
 })
 
@@ -312,6 +311,14 @@ client.connect_signal("request::default_mousebindings", function()
     end),
   })
 end)
+
+client.connect_signal("mouse::enter",
+  function(c)
+    if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
+        and awful.client.focus.filter(c) then
+      client.focus = c
+    end
+  end)
 
 client.connect_signal("request::default_keybindings", function()
   awful.keyboard.append_client_keybindings({
@@ -397,9 +404,9 @@ ruled.client.connect_signal("request::rules", function()
         "Event Tester", -- xev.
       },
       role     = {
-        "AlarmWindow", -- Thunderbird's calendar.
+        "AlarmWindow",   -- Thunderbird's calendar.
         "ConfigManager", -- Thunderbird's about:config.
-        "pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
+        "pop-up",        -- e.g. Google Chrome's (detached) Developer Tools.
       }
     },
     properties = { floating = true }
@@ -420,7 +427,7 @@ ruled.client.connect_signal("request::rules", function()
   }
   ruled.client.append_rule {
     rule       = { instance = "chromium" },
-    properties = { screen = 1, tag = "4",floating = true }
+    properties = { screen = 1, tag = "4", floating = true }
   }
   ruled.client.append_rule {
     rule       = { instance = "Steam" },
@@ -622,10 +629,10 @@ end)
 
 -- Autostart
 
-awful.spawn.with_shell("sh ~/.config/awesome/autorun.sh")
+awful.spawn.with_shell("bash ~/.config/awesome/autorun.sh")
 awful.spawn.with_shell("pkill http-server")
 awful.spawn.with_shell("http-server ~/.config/chevron/dist")
-awful.spawn.with_shell("sleep 20s && conky -c ~/.config/conky/mocha.conf")
+-- awful.spawn.with_shell("sleep 20s && conky -c ~/.config/conky/mocha.conf")
 awful.spawn.with_shell("kdeconnect-indicator")
 awful.spawn.with_shell("feh --no-fehbg --bg-fill ~/Downloads/alena-aenami-stardust-1k.jpg")
 
